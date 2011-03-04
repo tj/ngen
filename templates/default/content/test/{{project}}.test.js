@@ -3,11 +3,11 @@
  * Module dependencies.
  */
 
-var mini = require('mini')
+var mini = require('{{project}}')
   , should = require('should');
 
 module.exports = {
   'test .version': function(){
-    mini.version.should.match(/^\d+\.\d+\.\d+$/);
+    {{project}}.version.should.match(/^\d+\.\d+\.\d+$/);
   }
 };

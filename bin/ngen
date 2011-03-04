@@ -124,6 +124,7 @@ Template.prototype.__defineGetter__('files', function(){
  */
 
 Template.prototype.create = function(){
+  var values = this.values;
   console.log();
   this.files.forEach(function(file){
     var basename = path.basename(file);

@@ -1,2 +1,2 @@
 
-module.exports = require('./lib/<%= project %>');
+module.exports = require('./lib/{{project}}');
