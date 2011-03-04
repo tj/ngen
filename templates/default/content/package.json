@@ -1,0 +1,10 @@
+{
+    "name": "{{project}}",
+  , "version": "0.0.1",
+  , "description": "{{description}}",
+  , "keywords": [],
+  , "author": "{{name}} <{{email}}>",
+  , "dependencies": {}
+  , "main": "index"
+  , "engines": { "node": "0.4.x" }
+}
