@@ -1,6 +1,8 @@
 
 # {{project}}
 
+  {{description}}
+
 ## License 
 
 (The MIT License)
