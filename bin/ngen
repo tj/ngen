@@ -1,8 +1,150 @@
 #!/usr/bin/env node
 
 /**
+ * Module dependencies.
+ */
+
+var fs = require('fs');
+
+/**
  * Arguments.
  */
 
 var args = process.argv.slice(2);
 
+/**
+ * Templates directory.
+ */
+
+var templates = __dirname + '/../templates';
+
+/**
+ * Template.
+ */
+
+var template = 'default';
+
+/**
+ * Destination path.
+ */
+
+var dest = process.cwd();
+
+/**
+ * Usage information.
+ */
+
+var usage = [
+    ''
+  , '  Usage: ngen [options] [path]'
+  , ''
+  , '  Options:'
+  , ''
+  , '    -t, --template <name>   Use the template <name>'
+  , '    -h, --help              Display help information'
+  , ''
+].join('\n');
+
+/**
+ * Initialize a new `Template` with the given `name`.
+ *
+ * @param {String} name
+ * @api private
+ */
+
+function Template(name) {
+  this.name = name;
+  this.path = templates + '/' + name;
+  this.mod = require(this.path);
+  this.values = {};
+}
+
+/**
+ * Initialize template at `dest`.
+ *
+ * @param {String} dest
+ * @api private
+ */
+
+Template.prototype.init = function(dest){
+  var self = this
+    , vars = this.mod.variables
+    , keys = Object.keys(vars);
+
+  this.dest = dest;
+
+  function next() {
+    var desc
+      , key = keys.shift();
+    if (key) {
+      desc = vars[key];
+      process.stdout.write(desc);
+      process.stdin.setEncoding('utf8');
+      process.stdin.once('data', function(str){
+        self.values[key] = str.trim();
+        next();
+      }).resume();
+    } else {
+      process.stdin.destroy();
+      self.create();
+    }
+  }
+
+  next();
+};
+
+/**
+ * Create the template files.
+ *
+ * @api private
+ */
+
+Template.prototype.create = function(){
+  
+};
+
+/**
+ * Require argument for `flag`.
+ */
+
+function requireArgument(flag) {
+  if (args.length) {
+    return args.shift();
+  } else {
+    console.error(flag + ' requires an argument');
+    process.exit(1);
+  }
+}
+
+// parse arguments
+
+var arg;
+while (args.length) {
+  switch (arg = args.shift()) {
+    case '-h':
+    case '--help':
+      console.log(usage);
+      process.exit();
+      break;
+    case '-t':
+    case '--template':
+      template = requireArgument(arg);
+      break;
+    default:
+      dest = arg;
+  }
+}
+
+// create template
+
+var tmpl = new Template(template);
+
+// dest
+
+try {
+  fs.mkdirSync(dest, 0775);
+} catch (err) {
+  
+}
+
+tmpl.init(dest);
