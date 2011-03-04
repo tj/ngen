@@ -5,8 +5,7 @@
  */
 
 var fs = require('fs')
-  , join = require('path').join
-  , basename = require('path').basename;
+  , join = require('path').join;
 
 /**
  * Arguments.
@@ -147,7 +146,7 @@ Template.prototype.create = function(){
     if (self.directories[file]) {
       try {
         fs.mkdirSync(out, 0775);
-        console.log('  \033[90mcreate :\033[0m \033[36m%s\033[0m', basename(path));
+        console.log('  \033[90mcreate :\033[0m \033[36m%s\033[0m', out);
       } catch (err) {
         // ignore
       }
@@ -155,7 +154,7 @@ Template.prototype.create = function(){
     } else {
       var str = self.parse(fs.readFileSync(file, 'utf8'));
       fs.writeFileSync(out, str);
-      console.log('  \033[90mcreate :\033[0m \033[36m%s\033[0m', basename(path));
+      console.log('  \033[90mcreate :\033[0m \033[36m%s\033[0m', out);
     }
   });
   console.log();
