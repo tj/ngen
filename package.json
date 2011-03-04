@@ -1,0 +1,14 @@
+{
+  "name": "ngen",
+  "description": "Package generator (structure, changelogs, tests, package.json, etc)",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/visionmedia/ngen.git"
+  },
+  "author": "TJ Holowaychuk <tj@vision-media.ca>",
+  "bin": { "ngen": "./bin/ngen" },
+  "engines": {
+    "node": "*"
+  }
+}

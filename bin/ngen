@@ -15,6 +15,12 @@ var fs = require('fs')
 var args = process.argv.slice(2);
 
 /**
+ * Executable version.
+ */
+
+var version = '0.0.1';
+
+/**
  * Templates directory.
  */
 
@@ -43,6 +49,7 @@ var usage = [
   , '  Options:'
   , ''
   , '    -t, --template <name>   Use the template <name>'
+  , '    -V, --version           Output the current version'
   , '    -h, --help              Display help information'
   , ''
 ].join('\n');
