@@ -5,7 +5,8 @@
  */
 
 var fs = require('fs')
-  , path = require('path');
+  , join = require('path').join
+  , basename = require('path').basename;
 
 /**
  * Arguments.
@@ -56,6 +57,7 @@ var usage = [
 function Template(name) {
   this.name = name;
   this.path = templates + '/' + name;
+  this.contentPath = this.path + '/content';
   this.mod = require(this.path);
   this.values = {};
 }
@@ -111,7 +113,7 @@ Template.prototype.__defineGetter__('files', function(){
       var stat = fs.statSync(file);
       if (stat.isDirectory()) next(file);
     });
-  })(this.path);
+  })(this.contentPath);
 
   return files;
 });
@@ -124,14 +126,25 @@ Template.prototype.__defineGetter__('files', function(){
  */
 
 Template.prototype.create = function(){
-  var values = this.values;
+  var self = this;
   console.log();
   this.files.forEach(function(file){
-    var basename = path.basename(file);
-    console.log('  \033[90mcreate :\033[0m \033[36m%s\033[0m', basename);
+    var path = self.parse(file)
+      , out = join(dest, path.replace(self.contentPath, ''));
+    console.log('  \033[90mcreate :\033[0m \033[36m%s\033[0m', basename(path));
+    console.log();
   });
   console.log();
 };
+
+Template.prototype.parse = function(str){
+  var self = this;
+  return str
+    .replace(/\{\{([^}]+)\}\}/g, function(_, key){
+      return self.values[key];
+    });
+};
+
 
 /**
  * Require argument for `flag`.
