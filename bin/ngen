@@ -4,7 +4,8 @@
  * Module dependencies.
  */
 
-var fs = require('fs');
+var fs = require('fs')
+  , path = require('path');
 
 /**
  * Arguments.
@@ -72,13 +73,14 @@ Template.prototype.init = function(dest){
     , keys = Object.keys(vars);
 
   this.dest = dest;
+  console.log();
 
   function next() {
     var desc
       , key = keys.shift();
     if (key) {
       desc = vars[key];
-      process.stdout.write(desc);
+      process.stdout.write('  \033[90m' + desc + '\033[0m');
       process.stdin.setEncoding('utf8');
       process.stdin.once('data', function(str){
         self.values[key] = str.trim();
@@ -122,7 +124,12 @@ Template.prototype.__defineGetter__('files', function(){
  */
 
 Template.prototype.create = function(){
-  console.log(this.files);
+  console.log();
+  this.files.forEach(function(file){
+    var basename = path.basename(file);
+    console.log('  \033[90mcreate :\033[0m \033[36m%s\033[0m', basename);
+  });
+  console.log();
 };
 
 /**
