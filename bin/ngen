@@ -94,13 +94,35 @@ Template.prototype.init = function(dest){
 };
 
 /**
+ * Return the files for this template.
+ *
+ * @return {Array}
+ * @api private
+ */
+
+Template.prototype.__defineGetter__('files', function(){
+  var files = [];
+  
+  (function next(dir) {
+    fs.readdirSync(dir).forEach(function(file){
+      files.push(file = dir + '/' + file);
+      var stat = fs.statSync(file);
+      if (stat.isDirectory()) next(file);
+    });
+  })(this.path);
+
+  return files;
+});
+
+
+/**
  * Create the template files.
  *
  * @api private
  */
 
 Template.prototype.create = function(){
-  
+  console.log(this.files);
 };
 
 /**
