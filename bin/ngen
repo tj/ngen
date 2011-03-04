@@ -60,6 +60,7 @@ function Template(name) {
   this.contentPath = this.path + '/content';
   this.mod = require(this.path);
   this.values = {};
+  this.directories = {};
 }
 
 /**
@@ -105,13 +106,17 @@ Template.prototype.init = function(dest){
  */
 
 Template.prototype.__defineGetter__('files', function(){
-  var files = [];
+  var self = this
+    , files = [];
   
   (function next(dir) {
     fs.readdirSync(dir).forEach(function(file){
       files.push(file = dir + '/' + file);
       var stat = fs.statSync(file);
-      if (stat.isDirectory()) next(file);
+      if (stat.isDirectory()) {
+        self.directories[file] = true;
+        next(file);
+      }
     });
   })(this.contentPath);
 
@@ -131,11 +136,30 @@ Template.prototype.create = function(){
   this.files.forEach(function(file){
     var path = self.parse(file)
       , out = join(dest, path.replace(self.contentPath, ''));
+
+    // directory
+    if (self.directories[file]) {
+      try {
+        fs.mkdirSync(out, 0775);
+      } catch (err) {
+        // ignore
+      }
+    // file
+    } else {
+      var str = self.parse(fs.readFileSync(file, 'utf8'));
+      fs.writeFileSync(out, str);
+    }
     console.log('  \033[90mcreate :\033[0m \033[36m%s\033[0m', basename(path));
-    console.log();
   });
   console.log();
 };
+
+/**
+ * Parse `str`.
+ *
+ * @return {String}
+ * @api private
+ */
 
 Template.prototype.parse = function(str){
   var self = this;
@@ -144,7 +168,6 @@ Template.prototype.parse = function(str){
       return self.values[key];
     });
 };
-
 
 /**
  * Require argument for `flag`.
