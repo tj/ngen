@@ -1,7 +1,7 @@
 
 /*!
- * {project}
- * Copyright(c) 2011 {name} <{email}>
+ * {{project}}
+ * Copyright(c) 2011 {{name}} <{{email}}>
  * MIT Licensed
  */
 
