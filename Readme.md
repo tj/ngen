@@ -5,7 +5,7 @@
 
 ## Installation
 
-  $ npm install ngen
+    $ npm install ngen
 
 ## Usage
 
@@ -23,7 +23,14 @@
 
 ### Default
 
- Currently the only available template, creating the following structure:
+ Currently the only available template, creating the following structure populated with content after the following questions are asked from the cli:
+
+       Project name: foo
+       Enter your name: TJ Holowaychuk
+       Enter your email: tj@vision-media.ca
+       Project description: awesome foo-ness
+
+structure:
  
      History.md
      index.js
