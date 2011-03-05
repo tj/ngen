@@ -19,6 +19,20 @@
       -h, --help              Display help information
 
 
+## Templates
+
+### Default
+
+ Currently the only available template, creating the following structure:
+ 
+     History.md
+     index.js
+     lib/<project>.js
+     test/<project>.test.js
+     supprt
+     Makefile
+     package.json
+
 ## License 
 
 (The MIT License)
