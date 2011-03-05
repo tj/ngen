@@ -3,6 +3,22 @@
 
  NGen is a nodejs package generator, complete with best practices, package structure, package.json and more.
 
+## Installation
+
+  $ npm install ngen
+
+## Usage
+
+
+    Usage: ngen [options] [path]
+
+    Options:
+
+      -t, --template <name>   Use the template <name>
+      -V, --version           Output the current version
+      -h, --help              Display help information
+
+
 ## License 
 
 (The MIT License)
