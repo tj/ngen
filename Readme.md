@@ -32,13 +32,14 @@
 
 structure:
  
-     History.md
-     index.js
-     lib/<project>.js
-     test/<project>.test.js
-     supprt
-     Makefile
-     package.json
+     ./History.md
+     ./Readme.md
+     ./index.js
+     ./lib/<project>.js
+     ./test/<project>.test.js
+     ./support
+     ./Makefile
+     ./package.json
 
 ## License 
 
