@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// vim:ft=javascript:
 
 /**
  * Module dependencies.
@@ -87,14 +88,21 @@ Template.prototype.init = function(dest){
   function next() {
     var desc
       , key = keys.shift();
+
+    function yield(value) {
+      self.values[key] = String(value).trim();
+      next();
+    }
+
     if (key) {
       desc = vars[key];
-      process.stdout.write('  \033[90m' + desc + '\033[0m');
-      process.stdin.setEncoding('utf8');
-      process.stdin.once('data', function(str){
-        self.values[key] = str.trim();
-        next();
-      }).resume();
+      // If `desc` is a function executing it so that it can read a value.
+      if (typeof desc === "function") {
+        desc(self.values, yield);
+      // Otherwise falling back to CLI.
+      } else {
+        ask(desc, yield);
+      }
     } else {
       process.stdin.destroy();
       self.create();
@@ -186,6 +194,12 @@ function requireArgument(flag) {
     console.error(flag + ' requires an argument');
     process.exit(1);
   }
+}
+
+function ask(desc, callback) {
+  process.stdout.write('  \033[90m' + desc + '\033[0m');
+  process.stdin.setEncoding('utf8');
+  process.stdin.once('data', callback).resume();
 }
 
 // parse arguments
