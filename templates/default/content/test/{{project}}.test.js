@@ -3,7 +3,7 @@
  * Module dependencies.
  */
 
-var mini = require('{{project}}')
+var {{project}} = require('{{project}}')
   , should = require('should');
 
 module.exports = {
