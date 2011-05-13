@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+require.paths.unshift('lib');
+    
+var fs = require('fs'),
+    watch = require('watch'),
+    connect = require('connect'),
+    argv = require('optimist')
+              .default('config', './config.json')
+              .argv;    
+   
+var config = JSON.parse(fs.readFileSync(argv.config)),
+    db = require('./config/db'),
+    loader = require('./lib/loader');
+
+function init(db) {
+  loader(__dirname + '/modules', {
+          rootdir: __dirname,
+          console: console,
+          process: process,
+          config: config,
+          setTimeout: setTimeout,
+          setInterval: setInterval,
+          clearTimeout: clearTimeout,
+          clearIntevral: clearInterval,
+          db: db,
+          modules: '?'
+        });
+}
+
+db(config, init);
+

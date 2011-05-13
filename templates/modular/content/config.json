@@ -1,0 +1,1 @@
+{  "db": {    "host": "localhost",    "port": 5984,    "auth": {      "user": "admin",      "pass": "admin"    }  },  "http": {    "port": 8022  }}
