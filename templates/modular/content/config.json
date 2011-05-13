@@ -1,0 +1,13 @@
+{
+  "db": {
+    "host": "localhost",
+    "port": 5984,
+    "auth": {
+      "username": "admin",
+      "password": "admin"
+    }
+  },
+  "http": {
+    "port": 8022
+  }
+}
