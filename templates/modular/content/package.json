@@ -1,0 +1,22 @@
+{
+  "name": "{{project}}",
+  "version": "0.0.1",
+  "description": "{{description}}",
+  "author": "{{name}} <{{email}}>",
+  "keywords": [],
+  "private": true,
+  "dependencies": {
+    "optimist": ">= 0.0.3",
+    "cradle": ">= 0.3.1",
+    "ejs": ">= 0.2.1",
+    "express": ">= 1.0.1",
+    "connect":" >= 1.4.1",
+    "request": ">= 0.10.0",
+    "step": ">= 0.0.3",
+    "watch": ">= 0.3.0"
+  },
+  "engines": { "node": ">= 0.4.x" },
+  "scripts": {
+    "start": "node run.js"
+  }
+}
