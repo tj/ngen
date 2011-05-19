@@ -15,6 +15,7 @@
     Options:
 
       -t, --template <name>   Use the template <name>
+      -d, --directory <path>  Use the template directory <path>
       -V, --version           Output the current version
       -h, --help              Display help information
 

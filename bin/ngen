@@ -48,6 +48,7 @@ var usage = [
   , '  Options:'
   , ''
   , '    -t, --template <name>   Use the template <name>'
+  , '    -d, --directory <path>  Use the template directory <path>'
   , '    -V, --version           Output the current version'
   , '    -h, --help              Display help information'
   , ''
@@ -201,6 +202,10 @@ while (args.length) {
     case '-t':
     case '--template':
       template = requireArgument(arg);
+      break;
+    case '-d':
+    case '--directory':
+      templates = fs.realpathSync( requireArgument(arg) );
       break;
     default:
       dest = arg;
