@@ -205,7 +205,7 @@ while (args.length) {
       break;
     case '-d':
     case '--directory':
-      templates = fs.realpathSync( requireArgument(arg) );
+      templates = fs.realpathSync(requireArgument(arg));
       break;
     default:
       dest = arg;
