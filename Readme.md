@@ -44,14 +44,32 @@ structure:
 
 ## NPM Templates
 
- It is possible to install additional templates by using npm. You can install community templates or create your own by adding them to your local npm registry. 
- After installing the template you can use the -n or --npm flag to let ngen know to use the npm package as a template. As a convension the npm package are named with ngen then the template name for example a connect based template would be named ngen-connect.
+ It is possible to install additional templates by using npm. You can install community templates or create your own by adding them to your local npm registry.
+
+ After installing the template, you can use the -n or --npm flag to specify the npm package as a template. As a convention, the npm packages should be named with ngen- then the name for example, a connect based template would be named ngen-connect.
+
+ Lets make a new template, starting by creating a directory containing index.js and a sub folder named content. The index.js defines the variables used to substitute when building the template. The content folder contains a skeleton copy of the files.
+
+ ngen substitutes anything following the format of "{{token}}" where token is any one of the variables in the index.js file. Both file names and the file content will be updated. So if, you have a file name {{name}}.test.js and name = foo ngen will output a file named foo.test.js. Finally if, the file contains "var name = '{{name}}';" it will be updated to "var name = 'foo';"
+
+ The index.js is a list of exported variables with related prompts. The cli uses this file to generate the prompts to get the values for the substation. For example, the name variable will use the prompt "Enter your name: "
+
+     exports.variables = {
+       project: 'Project name: '
+       , name: 'Enter your name: '
+       , email: 'Enter your email: '
+       , description: 'Project description: '
+     };
 
 required template structure:
 
      ./index.js
      ./package.json
      ./content/
+
+example file substitution:
+
+     ./content/{{name}}.test.js
 
 ## License 
 
