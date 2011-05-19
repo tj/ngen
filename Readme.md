@@ -48,7 +48,7 @@ structure:
 
  After installing the template, you can use the -n or --npm flag to specify the npm package as a template. As a convention, the npm packages should be named with ngen-npm_package for example, a connect based template would be named ngen-connect.
 
- If you would like to start making your own templates and sharing them with the community you can check out [ngen-basicexample]{https://github.com/demetriusj/ngen-basicexample} for additional help on making a template.
+ If you would like to start making your own templates and sharing them with the community you can check out [ngen-basicexample](https://github.com/demetriusj/ngen-basicexample) for additional help on making a template.
 
 ## License 
 
