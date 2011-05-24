@@ -54,6 +54,7 @@ var usage = [
   , '  Options:'
   , ''
   , '    -t, --template <name>   Use the template <name>'
+  , '    -d, --directory <path>  Use the template directory <path>'
   , '    -n, --npm <package>     Use the npm template <package>'
   , '    -V, --version           Output the current version'
   , '    -h, --help              Display help information'
@@ -219,6 +220,9 @@ while (args.length) {
 		    console.error(npm + ' is not installed.');
 		    process.exit(1);
     	}
+    case '-d':
+    case '--directory':
+      templates = fs.realpathSync(requireArgument(arg));
       break;
     default:
       dest = arg;
