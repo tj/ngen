@@ -90,19 +90,17 @@ Template.prototype.init = function(dest){
     var desc
       , key = keys.shift();
 
-    function yield(value) {
+    function done(value) {
       self.values[key] = String(value).trim();
       next();
     }
 
     if (key) {
       desc = vars[key];
-      // If `desc` is a function executing it so that it can read a value.
-      if (typeof desc === "function") {
-        desc(self.values, yield);
-      // Otherwise falling back to CLI.
+      if ('function' == typeof desc) {
+        desc(self.values, done);
       } else {
-        ask(desc, yield);
+        ask(desc, done);
       }
     } else {
       process.stdin.destroy();
@@ -196,6 +194,10 @@ function requireArgument(flag) {
     process.exit(1);
   }
 }
+
+/**
+ * Ask for user input.
+ */
 
 function ask(desc, callback) {
   process.stdout.write('  \033[90m' + desc + '\033[0m');
