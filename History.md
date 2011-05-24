@@ -1,4 +1,12 @@
 
+0.0.5 / 2011-05-24 
+==================
+
+  * Added a cli option to specify an alternate template directory [recursivevirus]
+  * Added callback support for vars [Gozala]
+  * Added "modular" template [donnerjack13589]
+
+
 0.0.4 / 2011-04-06 
 ==================
 

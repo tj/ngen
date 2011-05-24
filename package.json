@@ -1,7 +1,7 @@
 {
   "name": "ngen",
   "description": "Package generator (structure, changelogs, tests, package.json, etc)",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "repository": {
     "type": "git",
     "url": "git://github.com/visionmedia/ngen.git"

@@ -18,7 +18,7 @@ var args = process.argv.slice(2);
  * Executable version.
  */
 
-var version = '0.0.4';
+var version = '0.0.5';
 
 /**
  * Templates directory.
