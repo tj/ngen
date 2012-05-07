@@ -1,4 +1,9 @@
 
+1.0.1 / 2012-05-07 
+==================
+
+  * Removing extra commas from git package.json template.
+
 1.0.0 / 2011-12-19 
 ==================
 
