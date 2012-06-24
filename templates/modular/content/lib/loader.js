@@ -1,6 +1,6 @@
 var fs = require('fs'),
     path = require('path'),
-    sys = require('sys'),
+    util = require('util'),
     watch = require('watch'),
     helpers = require('./helpers');
 
@@ -111,7 +111,7 @@ function addInvokeMethods(context, weighted) {
         array.push(result);
         helpers.store(object, elem.name, result);
       } catch (e) {
-        sys.puts(e);
+        util.puts(e);
       }
     }
     
