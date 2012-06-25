@@ -10,8 +10,5 @@
   "contributors": [
     "Irakli Gozalishvili <rfobic@gmail.com> (http://jeditoolkit.com)"
   ],
-  "bin": { "ngen": "./bin/ngen" },
-  "engines": {
-    "node": "*"
-  }
+  "bin": { "ngen": "./bin/ngen" }
 }
