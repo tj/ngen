@@ -5,5 +5,9 @@
   "keywords": [],
   "author": "{{name}} <{{email}}>",
   "dependencies": {},
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
   "main": "index"
 }
