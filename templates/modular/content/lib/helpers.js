@@ -7,7 +7,7 @@ var fs = require('fs'),
 */
 var isDirectory = exports.isDirectory = function(dir) {
   var stat;
-  return path.existsSync(dir) && (stat = fs.statSync(dir)) &&
+  return fs.existsSync(dir) && (stat = fs.statSync(dir)) &&
          stat.isDirectory();
 }
 
