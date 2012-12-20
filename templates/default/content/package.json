@@ -4,6 +4,7 @@
   "description": "{{description}}",
   "keywords": [],
   "author": "{{name}} <{{email}}>",
+  "repository": { "type": "git", "url": "git://github.com/{{username}}/{{project}}.git" },
   "dependencies": {},
   "devDependencies": {
     "mocha": "*",
