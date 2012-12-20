@@ -3,6 +3,7 @@ var spawn = require('child_process').spawn;
 exports.variables = {
     project: 'Project name: ',
     description: 'Project description: ',
+    username: 'Project username: ',
     name: function(values, callback) {
         spawn('git', [
             '--bare',
