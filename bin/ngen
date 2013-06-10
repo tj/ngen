@@ -67,7 +67,9 @@ function Template(name) {
   this.path = templates + '/' + name;
   this.contentPath = this.path + '/content';
   this.mod = require(this.path);
-  this.values = {};
+  this.values = {
+    year: new Date().getFullYear()
+  };
   this.directories = {};
 }
 
@@ -121,7 +123,7 @@ Template.prototype.init = function(dest){
 Template.prototype.__defineGetter__('files', function(){
   var self = this
     , files = [];
-  
+
   (function next(dir) {
     fs.readdirSync(dir).forEach(function(file){
       files.push(file = dir + '/' + file);
