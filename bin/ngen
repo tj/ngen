@@ -27,6 +27,12 @@ var version = '1.1.0';
 var templates = __dirname + '/../templates';
 
 /**
+ * Path to the npm package or false if non npm template.
+ */
+
+var npm = false;
+
+/**
  * Template.
  */
 
@@ -50,6 +56,7 @@ var usage = [
   , ''
   , '    -t, --template <name>   Use the template <name>'
   , '    -d, --directory <path>  Use the template directory <path>'
+  , '    -n, --npm <package>     Use the npm template <package>'
   , '    -V, --version           Output the current version'
   , '    -h, --help              Display help information'
   , ''
@@ -64,7 +71,7 @@ var usage = [
 
 function Template(name) {
   this.name = name;
-  this.path = templates + '/' + name;
+  this.path = npm || (templates + '/' + name);
   this.contentPath = this.path + '/content';
   this.mod = require(this.path);
   this.values = {
@@ -221,6 +228,16 @@ while (args.length) {
     case '--template':
       template = requireArgument(arg);
       break;
+    case '-n':
+    case '--npm':
+    	try {
+    		npm = requireArgument(arg);
+    		npm = require.resolve(npm);
+    		npm = npm.substring(0, npm.lastIndexOf('/'));
+    	} catch(e) {
+		    console.error(npm + ' is not installed.');
+		    process.exit(1);
+    	}
     case '-d':
     case '--directory':
       templates = fs.realpathSync(requireArgument(arg));

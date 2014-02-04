@@ -16,6 +16,7 @@
 
       -t, --template <name>   Use the template <name>
       -d, --directory <path>  Use the template directory <path>
+      -n, --npm <package>     Use the npm template <package>
       -V, --version           Output the current version
       -h, --help              Display help information
 
@@ -41,6 +42,14 @@ structure:
      ./support
      ./Makefile
      ./package.json
+
+## NPM Templates
+
+ It is possible to install additional templates by using npm. You can install community templates or create your own by adding them to your local npm registry.
+
+ After installing the template, you can use the -n or --npm flag to specify the npm package as a template. As a convention, the npm packages should be named with ngen-npm_package for example, a connect based template would be named ngen-connect.
+
+ If you would like to start making your own templates and sharing them with the community you can check out [ngen-basicexample](https://github.com/demetriusj/ngen-basicexample) for additional help on making a template.
 
 ## License 
 
