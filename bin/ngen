@@ -6,7 +6,8 @@
  */
 
 var fs = require('fs')
-  , join = require('path').join;
+  , join = require('path').join
+  , isBinaryFileSync = require('isbinaryfile');
 
 /**
  * Arguments.
@@ -161,8 +162,12 @@ Template.prototype.create = function(){
       }
     // file
     } else {
-      var str = self.parse(fs.readFileSync(file, 'utf8'));
-      fs.writeFileSync(out, str);
+      if (isBinaryFileSync(file)) {
+        fs.writeFileSync(out, fs.readFileSync(file));
+      } else {
+        var str = self.parse(fs.readFileSync(file, 'utf8'));
+        fs.writeFileSync(out, str);
+      }
       console.log('  \033[90mcreate :\033[0m \033[36m%s\033[0m', out);
     }
   });
