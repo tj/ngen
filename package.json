@@ -10,5 +10,10 @@
   "contributors": [
     "Irakli Gozalishvili <rfobic@gmail.com> (http://jeditoolkit.com)"
   ],
-  "bin": { "ngen": "./bin/ngen" }
+  "bin": {
+    "ngen": "./bin/ngen"
+  },
+  "dependencies": {
+    "isbinaryfile": "^2.0.1"
+  }
 }
